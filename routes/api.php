@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('posts', 'App\Http\Controllers\PostController@index');
+Route::post('create', 'App\Http\Controllers\PostController@create');
+Route::get('edit/{id}', 'App\Http\Controllers\PostController@edit');
+Route::post('update/{id}', 'App\Http\Controllers\PostController@update');
+Route::delete('delete/{id}', 'App\Http\Controllers\PostController@delete');
