@@ -8,16 +8,27 @@
     </div>
 
     <form v-on:submit.prevent="savePost" enctype="multipart/form-data">
-        <input type="text" name="title" id="title"
-               v-model="post.title">
+        <div class="form-row">
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title"
+                   v-model="post.title">
+        </div>
 
-        <textarea v-model="post.content" name="content" id="title"></textarea>
+        <div class="form-row">
+            <label for="content">Contenu</label>
+            <textarea v-model="post.content" name="content" id="content" cols="15"></textarea>
+        </div>
 
-        <input type="file" name="image" id="image">
+        <div class="form-row">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image">
+        </div>
 
-        <button type="submit">
-            Enregistrer
-        </button>
+        <div class="form-row">
+            <button type="submit" class="btn">
+                Enregistrer
+            </button>
+        </div>
     </form>
 </template>
 
