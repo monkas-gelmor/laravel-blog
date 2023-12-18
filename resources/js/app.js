@@ -1,14 +1,18 @@
-import { createApp } from "vue";
-import { createRouter, createWebHistory } from "vue-router";
-import App from "./App.vue";
-import {routes} from "./route.js";
+import './bootstrap';
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes: routes,
-});
+import Alpine from 'alpinejs';
 
-const app = createApp(App);
-app.use(router);
+window.Alpine = Alpine;
 
-app.mount('#app');
+Alpine.start();
+
+import { createApp } from 'vue';
+import router from './router'
+
+import PostIndex from "@/components/post/PostIndex.vue";
+
+createApp({
+    components: {
+        PostIndex
+    }
+}).use(router).mount('#app')
