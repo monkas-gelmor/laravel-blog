@@ -15,8 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('welcome', [
+        'posts' => \App\Models\Post::with([])->paginate(6)
+    ]);
+})->name('home');
+
+Route::get('/blog/{post}', function(\App\Models\Post $post) {
+    return view('post', [
+        'post' => $post,
+    ]);
+})->name('post');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
