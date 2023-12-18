@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | API Routes
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------N-
 |
 | Here is where you can register API routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
@@ -18,8 +18,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('posts', 'App\Http\Controllers\PostController@index');
-Route::post('create', 'App\Http\Controllers\PostController@create');
-Route::get('edit/{id}', 'App\Http\Controllers\PostController@edit');
-Route::post('update/{id}', 'App\Http\Controllers\PostController@update');
-Route::delete('delete/{id}', 'App\Http\Controllers\PostController@delete');
+Route::prefix('/post')->name('post')->controller(\App\Http\Controllers\PostController::class)->group(function() {
+    Route::get('/', 'index');
+    Route::get('/{post}', 'show')->where([
+        'post' => '[0-9]+',
+    ]);
+    Route::get('/new', 'create');
+    Route::post('/new', 'store');
+    Route::get('/edit/{id}', 'edit');
+    Route::post('/update/{id}', 'update');
+    Route::delete('/delete/{id}', 'delete');
+});
